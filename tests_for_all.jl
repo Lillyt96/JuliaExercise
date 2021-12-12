@@ -11,10 +11,10 @@ include("task1_optimised.jl")
     @test insert!(ps, 1, 1.0, 2.0) == true
     @test remove!(ps, 2) == false
     @test insert!(ps, 2, 2.0, 3.0) == true
-    @test randfunction(ps) ∈ [1,2]
+    @test rand_function(ps) ∈ [1,2]
     @test remove!(ps, 1) == true
     @test insert!(ps, 2, 3.0, 5.0) == false
-    @test randfunction(ps) == 2
+    @test rand_function(ps) == 2
     @test rand_point(ps) == [2.0, 3.0] 
     @test get_point(ps, 1) == false
     @test insert!(ps, 3, missing, missing) == true
@@ -29,10 +29,10 @@ end
     ps = PointSet()
     #test if insert! adds key value to ps.pset
     insert!(ps,1, 1.0, 2.0)
-    @test ps.pset[1] == (1.0, 2.0)
+    @test ps.pset[1] == [1.0, 2.0]
 
     #test if insert! adds value to ps.vset
-    @test (1.0, 2.0) in ps.vset
+    @test [1.0, 2.0] in ps.vset
 
     #test that insert! allows for one missing lat/long value
     @test insert!(ps, 2, 4, missing) == true
@@ -45,7 +45,7 @@ end
 
     #test if remove! removes value from ps.vset
     for point in ps.vset
-        @test point != (1.0, 2.0)
+        @test point != [1.0, 2.0]
     end 
 
     #test whether rand_function and rand_point work if ps.pset is empty 
