@@ -81,6 +81,8 @@ This part has no test cases, and is a free-form data exploration exercise. If yo
 Using the code from part 1 and LightOSM,
 - randomnly generate 100,000 Generate the shortest path between random 'nodes' on a 20km LightOSM Graph, as fast as possible
 - Output this to a as arrays of longitude-latitude linestrings (e.g. `[[1,0], [2,1], [3,2]]`)
+tried generating 100,000 node paths but it took too long to run 
+
 
 Provide the longest and shortest path that was generated. Document and discuss:
 - Timing benchmarks of your solution

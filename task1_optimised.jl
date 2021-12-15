@@ -71,7 +71,7 @@ end
 
 """ Benchmark testing WIP """
 # using BenchmarkTools
-# for i in 1:999999999
+# for i in 1:100000
 #     insert!(ps, rand(Int16), rand(), rand())
 # end
 # insert!(ps,134872398478,3,2)
