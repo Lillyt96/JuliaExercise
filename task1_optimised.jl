@@ -1,5 +1,6 @@
 using Missings 
 using BenchmarkTools
+import Base.rand
 
 ## == Part 1,  split into steps a,b & c.
 """ Set of Point IDs """
@@ -13,7 +14,7 @@ ps = PointSet()
 
 """ Implement the insert! function"""
 function insert!(ps::PointSet,val::Integer,x,y)
-    # Allow for missing lat-long positions 
+    # Returns missing if x or y are missing
     passmissing(x)
     passmissing(y)
 
@@ -24,7 +25,9 @@ function insert!(ps::PointSet,val::Integer,x,y)
     
     # Check our set of values to see if lat-long already exists
     if in([x,y], ps.vset)
-        return false
+        if ismissing(x) | ismissing(y) != true  # Allow for multiple misisng values
+            return false
+        end 
     end
 
     push!(ps.vset, [x,y]) # Otherwise add it to our set
@@ -43,8 +46,8 @@ function remove!(ps::PointSet, val::Integer)
     return false
 end
 
-""" Implement the rand_function! function"""
-function rand_function(ps::PointSet)
+""" Implement the rand function"""
+function rand(ps::PointSet)
     if isempty(keys(ps.pset)) # Accounts for effort that we'd get if our dict is empty 
         return false 
     end 

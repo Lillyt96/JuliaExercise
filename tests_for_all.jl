@@ -11,10 +11,10 @@ include("task1_optimised.jl")
     @test insert!(ps, 1, 1.0, 2.0) == true
     @test remove!(ps, 2) == false
     @test insert!(ps, 2, 2.0, 3.0) == true
-    @test rand_function(ps) ∈ [1,2]
+    @test rand(ps) ∈ [1,2]
     @test remove!(ps, 1) == true
     @test insert!(ps, 2, 3.0, 5.0) == false
-    @test rand_function(ps) == 2
+    @test rand(ps) == 2
     @test rand_point(ps) == [2.0, 3.0] 
     @test get_point(ps, 1) == false
     @test insert!(ps, 3, missing, missing) == true
@@ -48,11 +48,26 @@ end
         @test point != [1.0, 2.0]
     end 
 
-    #test whether rand_function and rand_point work if ps.pset is empty 
+    #test whether rand and rand_point work if ps.pset is empty 
     for val in keys(ps.pset)
         delete!(ps.pset,val)
     end 
-    @test rand_function(ps) == false
+    @test rand(ps) == false
     @test rand_point(ps) == false 
+
+    #test if we can have multiple entries with missing values
+    for i in 1:10
+        insert!(ps, i, missing, missing)
+    end
+    for i in 10:20
+        insert!(ps, i, 3, missing)
+    end
+    for i in 20:30
+        insert!(ps, i, missing, 3)
+    end 
+    @test remove!(ps,10)
+    @test remove!(ps,20)
+    @test remove!(ps,30)
+    print(ps.pset)
 
 end 
