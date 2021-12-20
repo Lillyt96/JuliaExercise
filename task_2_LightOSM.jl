@@ -69,18 +69,6 @@ end
 
 
 
-
 for i in 1:20
     @time shortest_path_information!(g, s, i)
 end 
-
-
-# """ Testing optimisation """
-# rand_o_d_indices = rand(1:length(g.nodes), 2, 2) # Returns an array of 5 graph verticies pairs
-# rand_o_d_nodes = [[g.index_to_node[o], g.index_to_node[d]] for (o, d) in eachrow(rand_o_d_indices) if o != d] # Returns an array of 5 node id pairs
-# faster = rand(keys(g.nodes), 2, 2)
-# println(faster)
-# println(faster[1])
-# println(faster[2])
-# println(faster[3])
-# println(faster[4])
